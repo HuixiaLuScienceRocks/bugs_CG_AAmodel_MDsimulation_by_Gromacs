@@ -117,7 +117,7 @@ SOD   	         325
 
 CLA   	         367
 
-Then the "gmx_mpi grompp ... ... " will be able to generate the xxx.tpr file without fetal error.
+Then the "gmx_mpi grompp ... ... " will be able to generate the xxx.tpr file without fatal error.
 
 ---------------------------------------------------------------------------------------------------------
 ### To be continued... ...
