@@ -35,5 +35,15 @@ However, Charmmgui made an error while generating no360loop_dimer_2_proa.itp:
 fix no360loop_dimer_2_proa.itp
 
 ## Example 3
+---------------------------------------------------------------------------------------------------------
 
+# AA model:
+
+### Using "Force Field Converter" module of CHARMMGUI takes CHARMM PSF and CRD files and produces input files with the selected force field (to run amber, gromacs, etc).
+
+https://www.charmm-gui.org/?doc=input/converter.ffconverter
+
+##### For example: To generate polymer.itp file (for gromacs force field), just upload its psf and crd files that is generated through  "PDB Reader & Manipulator" module of CHARMMGUI
+
+---------------------------------------------------------------------------------------------------------
 ### To be continued... ...
