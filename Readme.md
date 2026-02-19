@@ -34,16 +34,63 @@ However, Charmmgui made an error while generating no360loop_dimer_2_proa.itp:
 ### Solution:
 fix no360loop_dimer_2_proa.itp
 
-## Example 3
----------------------------------------------------------------------------------------------------------
 
-# AA model:
+---------------------------------------------------------------------------------------------------------
+## Example 3
+
+# 1. for AA model:
 
 ### Using "Force Field Converter" module of CHARMMGUI takes CHARMM PSF and CRD files and produces input files with the selected force field (to run amber, gromacs, etc).
 
 https://www.charmm-gui.org/?doc=input/converter.ffconverter
 
 ##### For example: To generate polymer.itp file (for gromacs force field), just upload its psf and crd files that is generated through  "PDB Reader & Manipulator" module of CHARMMGUI
+
+
+# 2. If GROMACS is complaining that there is a mismatch between topol.top and the system-whole.pdb/.gro
+
+#### Solution: to switch the order in topol.top
+##### Before: 
+; Include forcefield parameters
+#include "toppar/forcefield.itp"
+#include "toppar/CARA.itp"
+#include "toppar/SOD.itp"
+#include "toppar/CLA.itp"
+#include "toppar/TIP3.itp"
+
+
+[ system ]
+; Name
+Title
+
+[ molecules ]
+; Compound	#mols
+CARA  	           1
+SOD   	         325
+CLA   	         367
+TIP3  	      115176
+
+##### After:
+; Include forcefield parameters
+#include "toppar/forcefield.itp"
+#include "toppar/CARA.itp"
+#include "toppar/TIP3.itp"
+#include "toppar/SOD.itp"
+#include "toppar/CLA.itp"
+
+
+[ system ]
+; Name
+Title
+
+[ molecules ]
+; Compound	#mols
+CARA  	           1
+TIP3  	      115176
+SOD   	         325
+CLA   	         367
+
+Then the "gmx_mpi grompp ... ... " will be able to generate the xxx.tpr file without fetal error.
 
 ---------------------------------------------------------------------------------------------------------
 ### To be continued... ...
